@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@angular-start/home": ["libs/ui/home/src/index.ts"]
+      "@as/home": ["libs/ui/home/src/index.ts"],
+      "@interfaces/*": ["libs/interfaces/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

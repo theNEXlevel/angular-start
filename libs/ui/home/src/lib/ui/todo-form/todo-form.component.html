@@ -1,0 +1,12 @@
+<form
+  [formGroup]="todoForm"
+  (ngSubmit)="todoSubmitted.emit(todoForm.getRawValue())"
+>
+  <input type="text" formControlName="title" placeholder="title..." />
+  <input
+    type="text"
+    formControlName="description"
+    placeholder="description..."
+  />
+  <button [disabled]="!todoForm.valid" type="button">Add todo</button>
+</form>

@@ -4,6 +4,10 @@ export const appRoutes: Route[] = [
   {
     path: '',
     loadComponent: () =>
-      import('@angular-start/home').then((c) => c.HomeComponent),
+      import('@as/home').then((c) => c.HomeComponent),
+  },
+  {
+    path: '**',
+    redirectTo: '',
   },
 ];
