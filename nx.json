@@ -56,9 +56,12 @@
     },
     "@nx/angular:library": {
       "linter": "eslint",
+      "style": "scss",
       "unitTestRunner": "jest"
     },
     "@nx/angular:component": {
+      "displayBlock": true,
+      "prefix": "as",
       "style": "scss"
     }
   },
