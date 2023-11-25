@@ -1,2 +1,3 @@
 <h2>Todos</h2>
-<as-todo-form (todoSubmitted)="createTodo($event)"/>
+<as-todo-form (todoSubmitted)="todoService.addTodo($event)" />
+<as-todo-list [todos]="todoService.todos()" />
