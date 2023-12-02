@@ -45,8 +45,8 @@
           "optimization": false,
           "extractLicenses": false,
           "sourceMap": true,
-          "prerender": false,
-          "ssr": false
+          "prerender": true,
+          "ssr": true
         }
       },
       "defaultConfiguration": "production"
