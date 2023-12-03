@@ -3,19 +3,16 @@ import { AddChecklist, Checklist, ChecklistState } from '@interfaces/checklist';
 import { Observable, map } from 'rxjs';
 import { signalSlice } from 'ngxtension/signal-slice';
 
+const INITIAL_STATE: ChecklistState = {
+  checklists: [],
+};
+
 @Injectable({
   providedIn: 'root',
 })
 export class ChecklistService {
-  initialState: ChecklistState = {
-    checklists: [],
-  };
-
   state = signalSlice({
-    initialState: this.initialState,
-    // selectors: (state) => ({
-    //   checklists: () => state().checklists,
-    // }),
+    initialState: INITIAL_STATE,
     actionSources: {
       add: (state, actions$: Observable<AddChecklist>) =>
         actions$.pipe(
