@@ -1,6 +1,8 @@
 <ul>
   @for (checklist of data; track checklist.id) {
-    <li>{{ checklist.title }}</li>
+    <li>
+      <a [routerLink]="'/checklist/' + checklist.id">{{ checklist.title }}</a>
+    </li>
   } @empty {
     <p>Click the add button to create your first checklist!</p>
   }

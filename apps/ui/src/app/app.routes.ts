@@ -6,6 +6,10 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('@as-home').then((m) => m.HomeComponent),
   },
   {
+    path: 'checklist/:id',
+    loadComponent: () => import('@as-checklist').then((m) => m.ChecklistComponent),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
