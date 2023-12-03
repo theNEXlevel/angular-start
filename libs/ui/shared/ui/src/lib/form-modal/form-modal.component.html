@@ -1,0 +1,15 @@
+<header>
+  <h2>{{ data.title }}</h2>
+  <button (click)="closeForm.emit()">close</button>
+</header>
+<section>
+  <form [formGroup]="data.formGroup" (ngSubmit)="save.emit(); closeForm.emit()">
+    @for (control of data.formGroup.controls | keyvalue; track control.key) {
+      <div>
+        <label [for]="control.key">{{ control.key }}</label>
+        <input [id]="control.key" [formControlName]="control.key" type="text" />
+      </div>
+    }
+    <button type="submit">Save</button>
+  </form>
+</section>

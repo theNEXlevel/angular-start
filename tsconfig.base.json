@@ -17,6 +17,7 @@
     "paths": {
       "@as-home": ["libs/ui/home/src/index.ts"],
       "@as-shared/ui": ["libs/ui/shared/ui/src/index.ts"],
+      "@as-shared/data-access": ["libs/ui/shared/data-access/src/index.ts"],
       "@interfaces/*": ["libs/interfaces/*"]
     }
   },

@@ -4,5 +4,12 @@
 </header>
 
 <as-modal [isOpen]="!!checklistBeingEdited()">
-  <ng-template> You can't see me... yet </ng-template>
+  <ng-template>
+    <as-form-modal
+      [data]="{ title: checklistBeingEdited()?.title ? checklistBeingEdited()?.title! : 'Add Checklist', formGroup: checklistForm }"
+      (closeForm)="checklistBeingEdited.set(null)"
+      (save)="checklistService.state.add(checklistForm.getRawValue())"
+    >
+    </as-form-modal>
+  </ng-template>
 </as-modal>
