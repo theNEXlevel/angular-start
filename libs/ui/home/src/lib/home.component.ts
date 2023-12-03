@@ -4,11 +4,12 @@ import { FormModalComponent, ModalComponent } from '@as-shared/ui';
 import { Checklist } from '@interfaces/checklist';
 import { FormBuilder } from '@angular/forms';
 import { ChecklistService } from '@as-shared/data-access';
+import { ChecklistListComponent } from './ui/checklist-list';
 
 @Component({
-  selector: 'lib-home',
+  selector: 'as-home',
   standalone: true,
-  imports: [CommonModule, FormModalComponent, ModalComponent],
+  imports: [ChecklistListComponent, CommonModule, FormModalComponent, ModalComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

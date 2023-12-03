@@ -1,5 +1,6 @@
 <header>
   <h1>Quicklists</h1>
+  <as-checklist-list [data]="checklistService.state.checklists()" />
   <button (click)="checklistBeingEdited.set({})">Add Checklist</button>
 </header>
 
