@@ -1,0 +1,8 @@
+<header>
+  <h1>Quicklists</h1>
+  <button (click)="checklistBeingEdited.set({})">Add Checklist</button>
+</header>
+
+<as-modal [isOpen]="!!checklistBeingEdited()">
+  <ng-template> You can't see me... yet </ng-template>
+</as-modal>

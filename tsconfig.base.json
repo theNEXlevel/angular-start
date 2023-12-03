@@ -15,6 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@as-home": ["libs/ui/home/src/index.ts"],
+      "@as-shared/ui": ["libs/ui/shared/ui/src/index.ts"],
       "@interfaces/*": ["libs/interfaces/*"]
     }
   },
