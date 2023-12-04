@@ -1,3 +1,18 @@
 @if (checklist(); as checklist) {
   <as-checklist-header [data]="checklist" />
 }
+<as-modal [isOpen]="!!checklistItemBeingEdited()">
+  <ng-template>
+    <as-form-modal
+      [data]="{ title: 'Add Item', formGroup: checklistItemForm }"
+      (save)="
+        checklistItemsService.state.add({
+          item: checklistItemForm.getRawValue(),
+          checklistId: checklist()?.id!
+        })
+      "
+      (close)="checklistItemBeingEdited.set(null)"
+    >
+    </as-form-modal>
+  </ng-template>
+</as-modal>
