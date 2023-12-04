@@ -1,6 +1,7 @@
 @if (checklist(); as checklist) {
-  <as-checklist-header [data]="checklist" />
+  <as-checklist-header [data]="checklist" (addItem)="checklistItemBeingEdited.set({})" />
 }
+<as-checklist-item-list [data]="items()" />
 <as-modal [isOpen]="!!checklistItemBeingEdited()">
   <ng-template>
     <as-form-modal

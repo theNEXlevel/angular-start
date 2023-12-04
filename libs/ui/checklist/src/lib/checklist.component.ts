@@ -6,11 +6,12 @@ import { ChecklistItemsService } from './data-access/checklist-items';
 import { FormBuilder } from '@angular/forms';
 import { ChecklistItem } from '@interfaces/checklist-item';
 import { FormModalComponent, ModalComponent } from '@as-shared/ui';
+import { ChecklistItemListComponent } from './ui/checklist-item-list/checklist-item-list.component';
 
 @Component({
   selector: 'as-checklist',
   standalone: true,
-  imports: [ChecklistHeaderComponent, CommonModule, FormModalComponent, ModalComponent],
+  imports: [ChecklistHeaderComponent, ChecklistItemListComponent, CommonModule, FormModalComponent, ModalComponent],
   templateUrl: './checklist.component.html',
   styleUrl: './checklist.component.scss',
 })
@@ -29,6 +30,8 @@ export class ChecklistComponent {
   checklistItemForm = this.formBuilder.nonNullable.group({
     title: [''],
   });
+
+  items = computed(() => this.checklistItemsService.state().checklistItems.filter((item) => item.checklistId === this.id));
 
   constructor() {
     effect(() => {

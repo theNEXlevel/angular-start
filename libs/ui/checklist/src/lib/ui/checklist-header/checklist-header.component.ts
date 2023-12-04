@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Checklist } from '@interfaces/checklist';
@@ -12,4 +12,6 @@ import { Checklist } from '@interfaces/checklist';
 })
 export class ChecklistHeaderComponent {
   @Input({ required: true }) data!: Checklist;
+
+  @Output() addItem = new EventEmitter<void>();
 }
