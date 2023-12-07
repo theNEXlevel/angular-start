@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChecklistItem } from '@interfaces/checklist-item';
+import { ChecklistItem, RemoveChecklistItem } from '@interfaces/checklist-item';
 
 @Component({
   selector: 'as-checklist-item-list',
@@ -11,4 +11,6 @@ import { ChecklistItem } from '@interfaces/checklist-item';
 })
 export class ChecklistItemListComponent {
   @Input() data: ChecklistItem[] = [];
+
+  @Output() toggle = new EventEmitter<RemoveChecklistItem>();
 }

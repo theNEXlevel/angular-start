@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AddChecklistItem, ChecklistItemsState } from '@interfaces/checklist-item';
+import { AddChecklistItem, ChecklistItemsState, RemoveChecklistItem } from '@interfaces/checklist-item';
 import { signalSlice } from 'ngxtension/signal-slice';
 import { Observable, map } from 'rxjs';
 
@@ -17,6 +17,7 @@ export class ChecklistItemsService {
       add: (state, actions$: Observable<AddChecklistItem>) =>
         actions$.pipe(
           map((checklistItem) => ({
+            ...state(),
             checklistItems: [
               ...state().checklistItems,
               {
@@ -28,6 +29,20 @@ export class ChecklistItemsService {
             ],
           })),
         ),
+      toggle: (state, actions$: Observable<RemoveChecklistItem>) => 
+        actions$.pipe(
+          map((checklistItemId) => ({
+            ...state(),
+            checklistItems: state().checklistItems.map((item) => (item.id === checklistItemId ? { ...item, checked: !item.checked } : item ))
+          }))
+        ),
+      reset: (state, actions$: Observable<RemoveChecklistItem>) => 
+        actions$.pipe(
+          map((checklistId) => ({
+            ...state(),
+            checklistItems: state().checklistItems.map((item) => (item.checklistId === checklistId ? { ...item, checked: false } : item))
+          }))
+        )
     },
   });
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Checklist } from '@interfaces/checklist';
+import { Checklist, RemoveChecklist } from '@interfaces/checklist';
 
 @Component({
   selector: 'as-checklist-header',
@@ -14,4 +14,5 @@ export class ChecklistHeaderComponent {
   @Input({ required: true }) data!: Checklist;
 
   @Output() addItem = new EventEmitter<void>();
+  @Output() resetChecklist = new EventEmitter<RemoveChecklist>();
 }
