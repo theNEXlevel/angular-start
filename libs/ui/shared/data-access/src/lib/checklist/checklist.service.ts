@@ -1,16 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { AddChecklist, Checklist, ChecklistState } from '@interfaces/checklist';
-import { Observable, map } from 'rxjs';
+import { EMPTY, Observable, Subject, catchError, map, merge } from 'rxjs';
 import { signalSlice } from 'ngxtension/signal-slice';
+import { StorageService } from '../storage';
 
 const INITIAL_STATE: ChecklistState = {
   checklists: [],
+  loaded: false,
+  error: null,
 };
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChecklistService {
+  private storageService = inject(StorageService);
+
+  // sources
+  private errors$ = new Subject<string>();
+  private loadChecklists$ = this.storageService.loadChecklists().pipe(
+    catchError((error) => {
+      this.errors$.next(error);
+      return EMPTY;
+    }),
+  );
+
+  private sources$ = merge(this.loadChecklists$.pipe(map((checklists) => ({ checklists, loaded: true }))), this.errors$.pipe(map((error) => ({ error }))));
+
   state = signalSlice({
     initialState: INITIAL_STATE,
     actionSources: {
@@ -21,6 +37,14 @@ export class ChecklistService {
           })),
         ),
     },
+    effects: (state) => ({
+      init: () => {
+        if (state.loaded()) {
+          this.storageService.saveChecklists(state.checklists());
+        }
+      },
+    }),
+    sources: [this.sources$],
   });
 
   addIdToChecklist(checklist: AddChecklist): Checklist {
