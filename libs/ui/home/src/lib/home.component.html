@@ -1,6 +1,6 @@
 <header>
   <h1>Quicklists</h1>
-  <as-checklist-list [data]="checklistService.state.checklists()" />
+  <as-checklist-list [data]="checklistService.state.checklists()" (edit)="checklistBeingEdited.set($event)" (delete)="checklistService.state.remove($event)" />
   <button (click)="checklistBeingEdited.set({})">Add Checklist</button>
 </header>
 
@@ -9,7 +9,11 @@
     <as-form-modal
       [data]="{ title: checklistBeingEdited()?.title ? checklistBeingEdited()?.title! : 'Add Checklist', formGroup: checklistForm }"
       (closeForm)="checklistBeingEdited.set(null)"
-      (save)="checklistService.state.add(checklistForm.getRawValue())"
+      (save)="
+        checklistBeingEdited()?.id
+          ? checklistService.state.edit({ id: checklistBeingEdited()?.id!, data: checklistForm.getRawValue() })
+          : checklistService.state.add(checklistForm.getRawValue())
+      "
     >
     </as-form-modal>
   </ng-template>

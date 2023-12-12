@@ -35,8 +35,13 @@ export class ChecklistComponent {
 
   constructor() {
     effect(() => {
-      if (!this.checklistItemBeingEdited()) {
+      const checklistItem = this.checklistItemBeingEdited();
+      if (!checklistItem) {
         this.checklistItemForm.reset();
+      } else {
+        this.checklistItemForm.patchValue({
+          title: checklistItem.title,
+        });
       }
     });
   }

@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { AddChecklist, Checklist, ChecklistState } from '@interfaces/checklist';
+import { AddChecklist, Checklist, ChecklistState, EditChecklist, RemoveChecklist } from '@interfaces/checklist';
 import { EMPTY, Observable, Subject, catchError, map, merge } from 'rxjs';
 import { signalSlice } from 'ngxtension/signal-slice';
 import { StorageService } from '../storage';
@@ -34,6 +34,20 @@ export class ChecklistService {
         actions$.pipe(
           map((checklist) => ({
             checklists: [...state().checklists, this.addIdToChecklist(checklist)],
+          })),
+        ),
+      edit: (state, actions$: Observable<EditChecklist>) =>
+        actions$.pipe(
+          map((editItem) => ({
+            ...state(),
+            checklists: state().checklists.map((item) => (editItem.id === item.id ? { ...item, ...editItem.data } : item)),
+          })),
+        ),
+      remove: (state, actions$: Observable<RemoveChecklist>) =>
+        actions$.pipe(
+          map((checklistId) => ({
+            ...state(),
+            checklists: state().checklists.filter((item) => item.id !== checklistId),
           })),
         ),
     },

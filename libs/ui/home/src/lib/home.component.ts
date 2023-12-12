@@ -26,8 +26,13 @@ export class HomeComponent {
 
   constructor() {
     effect(() => {
-      if (!this.checklistBeingEdited()) {
+      const checklist = this.checklistBeingEdited();
+      if (!checklist) {
         this.checklistForm.reset();
+      } else {
+        this.checklistForm.patchValue({
+          title: checklist.title,
+        });
       }
     });
   }

@@ -1,19 +1,23 @@
 @if (checklist(); as checklist) {
-  <as-checklist-header
-  [data]="checklist"
-  (addItem)="checklistItemBeingEdited.set({})"
-  (resetChecklist)="checklistItemsService.state.reset($event)" />
+  <as-checklist-header [data]="checklist" (addItem)="checklistItemBeingEdited.set({})" (resetChecklist)="checklistItemsService.state.reset($event)" />
 }
-<as-checklist-item-list [data]="items()" (toggle)="checklistItemsService.state.toggle($event)"/>
+<as-checklist-item-list
+  [data]="items()"
+  (toggle)="checklistItemsService.state.toggle($event)"
+  (edit)="checklistItemBeingEdited.set($event)"
+  (delete)="checklistItemsService.state.remove($event)"
+/>
 <as-modal [isOpen]="!!checklistItemBeingEdited()">
   <ng-template>
     <as-form-modal
       [data]="{ title: 'Add Item', formGroup: checklistItemForm }"
       (save)="
-        checklistItemsService.state.add({
-          item: checklistItemForm.getRawValue(),
-          checklistId: checklist()?.id!
-        })
+        checklistItemBeingEdited()?.id
+          ? checklistItemsService.state.edit({ id: checklistItemBeingEdited()!.id!, data: checklistItemForm.getRawValue() })
+          : checklistItemsService.state.add({
+              item: checklistItemForm.getRawValue(),
+              checklistId: checklist()!.id!
+            })
       "
       (closeForm)="checklistItemBeingEdited.set(null)"
     >

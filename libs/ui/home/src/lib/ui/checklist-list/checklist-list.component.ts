@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Checklist } from '@interfaces/checklist';
+import { Checklist, RemoveChecklist } from '@interfaces/checklist';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,4 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class ChecklistListComponent {
   @Input() data: Checklist[] = [];
+
+  @Output() edit = new EventEmitter<Checklist>();
+  @Output() delete = new EventEmitter<RemoveChecklist>();
 }

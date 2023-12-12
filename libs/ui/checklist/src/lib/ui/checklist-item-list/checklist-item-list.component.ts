@@ -13,4 +13,6 @@ export class ChecklistItemListComponent {
   @Input() data: ChecklistItem[] = [];
 
   @Output() toggle = new EventEmitter<RemoveChecklistItem>();
+  @Output() edit = new EventEmitter<ChecklistItem>();
+  @Output() delete = new EventEmitter<RemoveChecklistItem>();
 }
