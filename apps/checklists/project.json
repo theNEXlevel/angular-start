@@ -1,28 +1,28 @@
 {
-  "name": "ui",
+  "name": "checklists",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "as",
-  "sourceRoot": "apps/ui/src",
+  "sourceRoot": "apps/checklists/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/ui",
-        "index": "apps/ui/src/index.html",
-        "browser": "apps/ui/src/main.ts",
+        "outputPath": "dist/apps/checklists",
+        "index": "apps/checklists/src/index.html",
+        "browser": "apps/checklists/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "apps/ui/tsconfig.app.json",
+        "tsConfig": "apps/checklists/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/ui/src/favicon.ico", "apps/ui/src/assets"],
-        "styles": ["apps/ui/src/styles.scss"],
+        "assets": ["apps/checklists/src/favicon.ico", "apps/checklists/src/assets"],
+        "styles": ["apps/checklists/src/styles.scss"],
         "scripts": [],
-        "server": "apps/ui/src/main.server.ts",
+        "server": "apps/checklists/src/main.server.ts",
         "prerender": true,
         "ssr": {
-          "entry": "apps/ui/server.ts"
+          "entry": "apps/checklists/server.ts"
         }
       },
       "configurations": {
@@ -55,10 +55,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "ui:build:production"
+          "buildTarget": "checklists:build:production"
         },
         "development": {
-          "buildTarget": "ui:build:development"
+          "buildTarget": "checklists:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -66,21 +66,21 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "ui:build"
+        "buildTarget": "checklists:build"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/ui/**/*.ts", "apps/ui/**/*.html"]
+        "lintFilePatterns": ["apps/checklists/**/*.ts", "apps/checklists/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/ui/jest.config.ts"
+        "jestConfig": "apps/checklists/jest.config.ts"
       }
     }
   }

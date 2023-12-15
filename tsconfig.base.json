@@ -15,10 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@as-checklist": ["libs/ui/checklist/src/index.ts"],
-      "@as-home": ["libs/ui/home/src/index.ts"],
-      "@as-shared/data-access": ["libs/ui/shared/data-access/src/index.ts"],
-      "@as-shared/ui": ["libs/ui/shared/ui/src/index.ts"],
+      "@as-checklist": ["libs/checklists/checklist/src/index.ts"],
+      "@as-home": ["libs/checklists/home/src/index.ts"],
+      "@as-shared/data-access": ["libs/checklists/shared/data-access/src/index.ts"],
+      "@as-shared/ui": ["libs/checklists/shared/ui/src/index.ts"],
       "@interfaces/*": ["libs/interfaces/*"]
     }
   },

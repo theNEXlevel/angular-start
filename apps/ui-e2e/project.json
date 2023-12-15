@@ -19,5 +19,5 @@
       }
     }
   },
-  "implicitDependencies": ["ui"]
+  "implicitDependencies": ["checklists"]
 }
