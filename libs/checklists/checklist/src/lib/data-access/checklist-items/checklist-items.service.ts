@@ -3,7 +3,7 @@ import { AddChecklistItem, ChecklistItemsState, EditChecklistItem, RemoveCheckli
 import { signalSlice } from 'ngxtension/signal-slice';
 import { EMPTY, Observable, Subject, catchError, map, merge } from 'rxjs';
 import { RemoveChecklist } from '@interfaces/checklist';
-import { ChecklistService, StorageService } from '@as-shared/data-access';
+import { ChecklistService, StorageService } from '@as/checklist/shared/data-access';
 
 const INITIAL_STATE: ChecklistItemsState = {
   checklistItems: [],

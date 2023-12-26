@@ -57,7 +57,8 @@
     "@nx/angular:component": {
       "style": "scss",
       "displayBlock": true,
-      "prefix": "as"
+      "prefix": "as",
+      "changeDetection": "onPush"
     }
   },
   "nxCloudAccessToken": "NmFmNWZjMTYtMzIxMi00Y2U2LWExOTMtNDVmYTBmYTcwZTIwfHJlYWQtd3JpdGU="

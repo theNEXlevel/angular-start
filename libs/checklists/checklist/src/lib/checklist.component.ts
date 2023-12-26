@@ -1,11 +1,11 @@
 import { Component, Input, computed, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChecklistService } from '@as-shared/data-access';
+import { ChecklistService } from '@as/checklist/shared/data-access';
 import { ChecklistHeaderComponent } from './ui/checklist-header/checklist-header.component';
 import { ChecklistItemsService } from './data-access/checklist-items';
 import { FormBuilder } from '@angular/forms';
 import { ChecklistItem } from '@interfaces/checklist-item';
-import { FormModalComponent, ModalComponent } from '@as-shared/ui';
+import { FormModalComponent, ModalComponent } from '@as/checklist/shared/ui';
 import { ChecklistItemListComponent } from './ui/checklist-item-list/checklist-item-list.component';
 
 @Component({

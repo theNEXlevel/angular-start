@@ -1,9 +1,9 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormModalComponent, ModalComponent } from '@as-shared/ui';
+import { FormModalComponent, ModalComponent } from '@as/checklist/shared/ui';
 import { Checklist } from '@interfaces/checklist';
 import { FormBuilder } from '@angular/forms';
-import { ChecklistService } from '@as-shared/data-access';
+import { ChecklistService } from '@as/checklist/shared/data-access';
 import { ChecklistListComponent } from './ui/checklist-list';
 
 @Component({

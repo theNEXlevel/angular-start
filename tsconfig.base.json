@@ -15,11 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@as-checklist": ["libs/checklists/checklist/src/index.ts"],
-      "@as-home": ["libs/checklists/home/src/index.ts"],
-      "@as-shared/data-access": ["libs/checklists/shared/data-access/src/index.ts"],
-      "@as-shared/ui": ["libs/checklists/shared/ui/src/index.ts"],
-      "@interfaces/*": ["libs/interfaces/*"]
+      "@as/checklist": ["libs/checklists/checklist/src/index.ts"],
+      "@as/checklist/home": ["libs/checklists/home/src/index.ts"],
+      "@as/checklist/shared/data-access": ["libs/checklists/shared/data-access/src/index.ts"],
+      "@as/checklist/shared/ui": ["libs/checklists/shared/ui/src/index.ts"],
+      "@as/giflist/home": ["libs/giflist/home/src/index.ts"],
+      "@interfaces/*": ["libs/interfaces/*"],
+      "giflist-shared-data-access": ["libs/giflist/shared/data-access/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
