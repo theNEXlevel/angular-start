@@ -1,0 +1,6 @@
+@if (state.status() === 'loading') {
+  <mat-progress-spinner mode="indeterminate" diameter="50" />
+}
+<div>
+  <video (click)="state.play()" #gifPlayer playsinline preload="none" [loop]="true" [muted]="true" [src]="data.src"></video>
+</div>

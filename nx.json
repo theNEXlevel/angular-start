@@ -58,7 +58,7 @@
       "style": "scss",
       "displayBlock": true,
       "prefix": "as",
-      "changeDetection": "onPush"
+      "changeDetection": "OnPush"
     }
   },
   "nxCloudAccessToken": "NmFmNWZjMTYtMzIxMi00Y2U2LWExOTMtNDVmYTBmYTcwZTIwfHJlYWQtd3JpdGU="
