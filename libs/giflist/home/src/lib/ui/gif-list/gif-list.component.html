@@ -1,5 +1,5 @@
 @for (gif of data; track gif.permalink) {
   <div>
-    {{ gif.title }}
+    <as-gif-player [data]="{ src: gif.src, thumbnail: gif.thumbnail }"></as-gif-player>
   </div>
 }

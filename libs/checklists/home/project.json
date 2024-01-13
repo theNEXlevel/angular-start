@@ -17,7 +17,7 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/ui/home/**/*.ts", "libs/ui/home/**/*.html"]
+        "lintFilePatterns": ["libs/checklists/home", "libs/ui/home/**/*.ts", "libs/ui/home/**/*.html"]
       }
     }
   }

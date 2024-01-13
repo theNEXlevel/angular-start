@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { GifPlayerData, GifPlayerState } from '@interfaces/giflist';
+import { GifPlayerData, GifPlayerState, GifPlayerStatus } from '@interfaces/giflist';
 import { EMPTY, Observable, combineLatest, filter, fromEvent, map, switchMap } from 'rxjs';
 import { signalSlice } from 'ngxtension/signal-slice';
 
@@ -38,6 +38,7 @@ export class GifPlayerComponent {
         actions$.pipe(
           map(() => ({
             ...state(),
+            playing: !state().playing,
           })),
         ),
       videoLoadStart: (state, actions$: Observable<Event>) =>
@@ -51,21 +52,38 @@ export class GifPlayerComponent {
         actions$.pipe(
           map(() => ({
             ...state(),
-            status: 'loaded'
-          }))
-        )
+            status: 'loaded',
+          })),
+        ),
     },
   });
-  
+
   videoLoadStart$ = combineLatest([this.videoElement$, toObservable(this.state.playing)]).pipe(
     switchMap(([element, playing]) => (playing ? fromEvent(element, 'loadstart') : EMPTY)),
   );
 
-  videoLoadComplete$ = this.videoElement$.pipe(
-    switchMap((element) => fromEvent(element, 'loadeddata'))
-  );
+  videoLoadComplete$ = this.videoElement$.pipe(switchMap((element) => fromEvent(element, 'loadeddata')));
 
   constructor() {
     this.state.videoLoadStart(this.videoLoadStart$);
+
+    // effects
+    effect(() => {
+      const video = this.videoElement();
+      const playing = this.state().playing;
+      const status = this.state().status;
+
+      if (!video) {
+        return;
+      }
+
+      const videoMapper: Record<GifPlayerStatus, () => void> = {
+        initial: () => video.load(),
+        loaded: () => (playing ? video.play() : video.pause()),
+        loading: () => {},
+      };
+
+      videoMapper[status];
+    });
   }
 }

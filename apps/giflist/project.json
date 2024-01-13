@@ -8,26 +8,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/giflist",
         "index": "apps/giflist/src/index.html",
         "browser": "apps/giflist/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/giflist/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/giflist/src/favicon.ico",
-          "apps/giflist/src/assets"
-        ],
-        "styles": [
-          "@angular/material/prebuilt-themes/pink-bluegrey.css",
-          "apps/giflist/src/styles.scss"
-        ],
+        "assets": ["apps/giflist/src/favicon.ico", "apps/giflist/src/assets"],
+        "styles": ["@angular/material/prebuilt-themes/pink-bluegrey.css", "apps/giflist/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -74,21 +64,11 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "apps/giflist/**/*.ts",
-          "apps/giflist/**/*.html"
-        ]
-      }
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/giflist/jest.config.ts"
       }

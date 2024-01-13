@@ -17,7 +17,7 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/ui/shared/data-access/**/*.ts", "libs/ui/shared/data-access/**/*.html"]
+        "lintFilePatterns": ["libs/checklists/shared/data-access", "libs/ui/shared/data-access/**/*.ts", "libs/ui/shared/data-access/**/*.html"]
       }
     }
   }

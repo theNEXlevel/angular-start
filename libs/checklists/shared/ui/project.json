@@ -17,7 +17,7 @@
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/ui/shared/ui/**/*.ts", "libs/ui/shared/ui/**/*.html"]
+        "lintFilePatterns": ["libs/checklists/shared/ui", "libs/ui/shared/ui/**/*.ts", "libs/ui/shared/ui/**/*.html"]
       }
     }
   }
