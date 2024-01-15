@@ -1,1 +1,6 @@
-<as-gif-list [data]="redditService.state().gifs" class="grid-container" />
+<as-gif-list
+  [data]="redditService.state.gifs()"
+  class="grid-container"
+  infiniteScroll
+  (scrolled)="redditService.state.pagination(redditService.state.lastKnownGif())"
+/>

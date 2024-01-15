@@ -19,7 +19,8 @@
     "@angular/ssr": "17.0.10",
     "@nx/angular": "17.2.8",
     "express": "4.18.2",
-    "ngxtension": "^1.4.0",
+    "ngx-infinite-scroll": "^17.0.0",
+    "ngxtension": "^1.9.9",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
     "zone.js": "0.14.2"
@@ -64,4 +65,3 @@
     "typescript": "5.2.2"
   }
 }
-
