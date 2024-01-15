@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, effec
 import { CommonModule } from '@angular/common';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { GifPlayerData, GifPlayerState, GifPlayerStatus } from '@interfaces/giflist';
+import { GifPlayerData, GifPlayerState } from '@interfaces/giflist';
 import { EMPTY, Observable, combineLatest, filter, fromEvent, map, switchMap } from 'rxjs';
 import { signalSlice } from 'ngxtension/signal-slice';
 
@@ -66,7 +66,7 @@ export class GifPlayerComponent {
 
   constructor() {
     this.state.videoLoadStart(this.videoLoadStart$);
-
+    this.state.videoLoadComplete(this.videoLoadComplete$);
     // effects
     effect(() => {
       const video = this.videoElement();
@@ -77,13 +77,13 @@ export class GifPlayerComponent {
         return;
       }
 
-      const videoMapper: Record<GifPlayerStatus, () => void> = {
-        initial: () => video.load(),
-        loaded: () => (playing ? video.play() : video.pause()),
-        loading: () => {},
-      };
+      if (playing && status === 'initial') {
+        video.load();
+      }
 
-      videoMapper[status];
+      if (status === 'loaded') {
+        playing ? video.play() : video.pause();
+      }
     });
   }
 }
