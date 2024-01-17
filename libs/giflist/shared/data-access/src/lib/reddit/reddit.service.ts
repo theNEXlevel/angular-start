@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Gif, RedditPost, RedditResponse, RedditState } from '@interfaces/giflist';
 import { signalSlice } from 'ngxtension/signal-slice';
-import { EMPTY, Subject, catchError, concatMap, map, merge, startWith } from 'rxjs';
+import { EMPTY, Subject, catchError, concatMap, debounceTime, distinctUntilChanged, map, merge, startWith, switchMap } from 'rxjs';
 
 const INITIAL_STATE: RedditState = {
   gifs: [],
@@ -17,14 +18,34 @@ const INITIAL_STATE: RedditState = {
 export class RedditService {
   private http = inject(HttpClient);
 
+  subredditFormControl = new FormControl();
+
   // sources
+  private subredditChanged$ = this.subredditFormControl.valueChanges.pipe(
+    debounceTime(300),
+    distinctUntilChanged(),
+    startWith('gifs'),
+    map((subreddit) => (subreddit.length ? subreddit : 'gifs')),
+  );
   private pagination$ = new Subject<string | null>();
-  private gifsLoaded$ = this.pagination$.pipe(
-    startWith(null),
-    concatMap((lastKnownGif) => this.fetchFromReddit('gifs', lastKnownGif, 20)),
+  private gifsLoaded$ = this.subredditChanged$.pipe(
+    switchMap((subreddit) =>
+      this.pagination$.pipe(
+        startWith(null),
+        concatMap((lastKnownGif) => this.fetchFromReddit(subreddit, lastKnownGif, 20)),
+      ),
+    ),
   );
 
-  private sources$ = merge(this.gifsLoaded$);
+  private sources$ = merge(
+    this.subredditChanged$.pipe(
+      map(() => ({
+        loading: true,
+        gifs: [],
+        lastKnownGif: null,
+      })),
+    ),
+  );
 
   state = signalSlice({
     initialState: INITIAL_STATE,

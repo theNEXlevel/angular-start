@@ -1,6 +1,11 @@
-<as-gif-list
-  [data]="redditService.state.gifs()"
-  class="grid-container"
-  infiniteScroll
-  (scrolled)="redditService.state.pagination(redditService.state.lastKnownGif())"
-/>
+<as-search-bar [subredditFormControl]="redditService.subredditFormControl" />
+@if (redditService.state.loading()) {
+  <mat-progress-spinner mode="indeterminate" diameter="50" />
+} @else {
+  <as-gif-list
+    [data]="redditService.state.gifs()"
+    class="grid-container"
+    infiniteScroll
+    (scrolled)="redditService.state.pagination(redditService.state.lastKnownGif())"
+  />
+}
