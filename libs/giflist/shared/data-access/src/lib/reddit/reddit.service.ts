@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Gif, RedditPost, RedditResponse, RedditState } from '@interfaces/giflist';
 import { signalSlice } from 'ngxtension/signal-slice';
-import { EMPTY, Subject, catchError, concatMap, debounceTime, distinctUntilChanged, map, merge, startWith, switchMap } from 'rxjs';
+import { EMPTY, Subject, catchError, concatMap, debounceTime, distinctUntilChanged, expand, map, merge, startWith, switchMap } from 'rxjs';
 
 const INITIAL_STATE: RedditState = {
   gifs: [],
@@ -33,6 +33,15 @@ export class RedditService {
       this.pagination$.pipe(
         startWith(null),
         concatMap((lastKnownGif) => this.fetchFromReddit(subreddit, lastKnownGif, 20)),
+        expand((response, index) => {
+          const { gifs, gifsRequired, lastKnownGif } = response;
+          const remainingGifsToFetch = gifsRequired - gifs.length;
+          const maxAttempts = 15;
+
+          const shouldKeepTrying = remainingGifsToFetch > 0 && index < maxAttempts && lastKnownGif !== null;
+
+          return shouldKeepTrying ? this.fetchFromReddit(subreddit, lastKnownGif, remainingGifsToFetch) : EMPTY;
+        }),
       ),
     ),
   );
