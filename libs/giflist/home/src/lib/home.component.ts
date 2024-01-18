@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RedditService } from 'giflist-shared-data-access';
+import { RedditService } from '@as/giflist/shared/data-access';
 import { GifListComponent, SearchBarComponent } from './ui';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
