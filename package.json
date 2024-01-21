@@ -2,7 +2,9 @@
   "name": "as",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start-chat": "firebase emulators:exec --project=demo-project --ui 'pnpm exec nx run chat:serve'"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "17.0.9",
@@ -19,8 +21,10 @@
     "@angular/ssr": "17.0.10",
     "@nx/angular": "17.2.8",
     "express": "4.18.2",
+    "firebase": "^10.7.2",
     "ngx-infinite-scroll": "^17.0.0",
     "ngxtension": "^1.9.9",
+    "rxfire": "^6.0.5",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
     "zone.js": "0.14.2"
