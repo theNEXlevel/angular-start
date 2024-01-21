@@ -1,6 +1,10 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src/**/*.ts"],
+  "include": [
+    "src/**/*.ts",
+    "../../libs/chat/shared/environments/src/lib/environment.development.ts",
+    "../../libs/chat/shared/environments/src/lib/environment.ts"
+  ],
   "compilerOptions": {
     "types": ["jest", "node"]
   }
