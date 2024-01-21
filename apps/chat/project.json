@@ -8,25 +8,16 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/chat",
         "index": "apps/chat/src/index.html",
         "browser": "apps/chat/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/chat/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": [
-          "apps/chat/src/favicon.ico",
-          "apps/chat/src/assets"
-        ],
-        "styles": [
-          "apps/chat/src/styles.scss"
-        ],
+        "assets": ["apps/chat/src/favicon.ico", "apps/chat/src/assets"],
+        "styles": ["apps/chat/src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -51,8 +42,8 @@
           "sourceMap": true,
           "fileReplacements": [
             {
-              "replace": "apps/chat/src/environments/environment.ts",
-              "with": "apps/chat/src/environments/environment.development.ts"
+              "replace": "libs/chat/shared/tokens/src/lib/environments/environment.ts",
+              "with": "libs/chat/shared/tokens/src/lib/environments/environment.development.ts"
             }
           ]
         }
@@ -79,21 +70,14 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/chat/**/*.ts",
-          "apps/chat/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/chat/**/*.ts", "apps/chat/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/chat/jest.config.ts"
       }
