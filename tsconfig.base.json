@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@as/chat/auth": ["libs/chat/auth/src/index.ts"],
       "@as/chat/home": ["libs/chat/home/src/index.ts"],
       "@as/chat/shared/data-access": ["libs/chat/shared/data-access/src/index.ts"],
       "@as/chat/shared/tokens": ["libs/chat/shared/tokens/src/index.ts"],

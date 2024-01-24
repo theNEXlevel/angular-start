@@ -1,0 +1,4 @@
+<div class="container gradient-bg">
+  <as-login-form [data]="{ status: loginService.state.status() }" (login)="loginService.state.login($event)" />
+  <a routerLink="/auth/register">Create account</a>
+</div>

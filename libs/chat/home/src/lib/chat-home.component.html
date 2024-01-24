@@ -1,0 +1,4 @@
+<div class="container">
+  <as-message-input (send)="messageService.state.add($event)" />
+  <as-message-list [data]="{ messages: messageService.state.messages() }" />
+</div>

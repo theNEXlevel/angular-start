@@ -1,0 +1,3 @@
+<div class="container gradient-bg">
+  <as-register-form [data]="{ status: registerService.state.status() }" (register)="registerService.state.createUser($event)" />
+</div>
