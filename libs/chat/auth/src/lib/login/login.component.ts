@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginFormComponent } from './ui';
 import { LoginService } from './data-access';
@@ -11,7 +11,6 @@ import { RouterModule } from '@angular/router';
   providers: [LoginService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
   loginService = inject(LoginService);

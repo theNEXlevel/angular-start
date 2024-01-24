@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild, effect, signal } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -17,7 +17,6 @@ const INITIAL_STATE: GifPlayerState = {
   imports: [CommonModule, MatProgressSpinnerModule],
   templateUrl: './gif-player.component.html',
   styleUrl: './gif-player.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GifPlayerComponent {
   @Input({ required: true }) data!: GifPlayerData;

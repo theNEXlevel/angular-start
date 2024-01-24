@@ -10,5 +10,12 @@
     <mat-icon matPrefix>lock</mat-icon>
   </mat-form-field>
 
+  @if (data.status === 'error') {
+    <mat-error>Could not log you in with those details.</mat-error>
+  }
+  @if (data.status === 'authenticating') {
+    <mat-spinner diameter="50"></mat-spinner>
+  }
+
   <button mat-raised-button color="accent" type="submit" [disabled]="data.status === 'authenticating'">Login</button>
 </form>
